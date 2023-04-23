@@ -24,10 +24,6 @@ int print_string(char *str, int count)
 	{
 		return (print_string("(null)", count));
 	}
-	if (*str == '\0')
-	{
-		return (print_string("(null)", count));
-	}
 	while (*str)
 	{
 		count = print_char(*str, count);

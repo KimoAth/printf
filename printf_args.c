@@ -22,7 +22,10 @@ int print_args1(va_list args, char specifier, int count)
 		break;
 		case '%':
 			count = print_char('%', count);
+		break;
 		default:
+			count = print_char('%', count);
+			count = print_char(specifier, count);
 		break;
 	}
 	return (count);

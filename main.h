@@ -11,4 +11,5 @@ int print_int(int n, int count);
 int print_char(char c, int count);
 int print_string(char *str, int count);
 int print_digit(int n, int count);
+int print_binary(unsigned int n, int count);
 #endif
