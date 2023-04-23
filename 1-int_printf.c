@@ -25,7 +25,7 @@ int print_int(int n, int count)
 	if (n == 0)
 		count = print_char('0', count);
 	else if (n > 0)
-		n *= -1;
+		n = -n;
 	else
 		count = print_char('-', count);
 	for (num = 0; num < 10; num++, y /= 10)
