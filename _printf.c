@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 	va_list args;
 	int count = 0;
 
-	if (format == NULL)
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 	va_start(args, format);
 	for (; *format; format++)
@@ -19,6 +19,12 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+			if (*format == ' ')
+			{
+				for (;*format != '%';format++)
+				{
+				}
+			}
 			for (; per1[i] != '\0'; i++)
 			{
 				if (per1[i] == *format)
