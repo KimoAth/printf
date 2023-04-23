@@ -16,6 +16,12 @@ int print_args1(va_list args, char specifier, int count)
 		case 's':
 			count = print_string(va_arg(args, char *), count);
 		break;
+		case 'i':
+		case 'd':
+			count = print_int(va_arg(args, int), count);
+		break;
+		case '%':
+			count = print_char('%', count);
 		default:
 		break;
 	}
