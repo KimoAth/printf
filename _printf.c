@@ -19,6 +19,13 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+			if (*format == ' ')
+			{
+				for (; *format != '%'; format++)
+				{
+				}
+			}
+			i = 0;
 			for (; per1[i] != '\0'; i++)
 			{
 				if (per1[i] == *format)
