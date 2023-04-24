@@ -20,6 +20,9 @@ int print_args1(va_list args, char specifier, int count)
 		case 'd':
 			count = print_int(va_arg(args, int), count);
 		break;
+		case 'b':
+			count = print_binary(va_arg(args, unsigned int), count);
+		break;
 		case '%':
 			count = print_char('%', count);
 		break;
