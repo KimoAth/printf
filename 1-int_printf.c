@@ -42,3 +42,29 @@ int print_int(int n, int count)
 	}
 	return (count);
 }
+/**
+   *print_binary - a function that changes a number to binary and then print it
+  *@n: the number
+  *@count: the counter
+  *Return: count
+  */
+int print_binary(unsigned int n, int count)
+{
+	int position = sizeof(unsigned int) * 8 - 1;
+
+	if (n <= 0)
+	{
+	count = print_string("(null)", count);
+	return (count);
+	}
+	while (position >= 0 && !(n & (1 << position)))
+	{
+	position--;
+	}
+	while (position >= 0)
+	{
+		count = print_char(n & (1 << position) ? '1' : '0', count);
+		position--;
+	}
+	return (count);
+}
