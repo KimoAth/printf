@@ -1,4 +1,5 @@
 #include "main.h"
+#include <limits.h>
 /**
   *print_digit - a function that prints a digit
   *@n: the digit
@@ -50,11 +51,17 @@ int print_int(int n, int count)
   */
 int print_binary(unsigned int n, int count)
 {
+	int number = n;
 	int position = sizeof(unsigned int) * 8 - 1;
 
-	if (n <= 0)
+	if ((n > UINT_MAX && number < 0))
 	{
 	count = print_string("(null)", count);
+	return (count);
+	}
+	if (number == 0)
+	{
+	count = print_digit(0, count);
 	return (count);
 	}
 	while (position >= 0 && !(n & (1 << position)))
