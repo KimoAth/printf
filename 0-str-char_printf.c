@@ -50,7 +50,7 @@ int print_nstr(char *c, int count)
 		}
 		else
 		{
-			print_char(*s, count);
+			print_char(*c, count);
 		}
 		c++;
 	}
