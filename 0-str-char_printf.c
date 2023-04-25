@@ -31,3 +31,42 @@ int print_string(char *str, int count)
 	}
 	return (count);
 }
+/**
+  *print_nstr - a function that prints non printable character
+  *@c: the string
+  *@count: the count
+  *Return: the count
+  */
+int print_nstr(char *c, int count)
+{
+	while (*c)
+	{
+		if (*c < 32 || *c >= 127)
+		{
+			count += print_char('\\', count);
+			count += print_char('X', count);
+			if ((*c / 16) < 10)
+			{
+				count = print_char((*c / 16) + '0', count);
+			}
+			else
+			{
+			count = print_char((*c / 16) - 10 + 'A', count);
+			}
+			if ((*c % 16) < 10)
+			{
+				count = print_char((*c % 16) + '0', count);
+			}
+			else
+			{
+			count = print_char((*c % 16) - 10 + 'A', count);
+			}
+		}
+		else
+		{
+			count += print_char(*c, count);
+		}
+		c++;
+	}
+	return (count);
+}
