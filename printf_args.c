@@ -21,17 +21,17 @@ int print_args1(va_list args, char specifier, int count)
 			count = print_int(va_arg(args, int), count);
 		break;
 		case 'u':
-                        count = print_u(va_arg(args, unsigned int), count);
-                break;
-		 case 'x':
-                        count = print_hex(va_arg(args, unsigned int), count);
-                break;
-                case 'X':
-                        count = print_hex_upper(va_arg(args, unsigned int), count);
-                break;
+			count = print_u(va_arg(args, unsigned int), count);
+		break;
+		case 'x':
+			count = print_hex(va_arg(args, unsigned int), count);
+		break;
+		case 'X':
+			count = print_hex_upper(va_arg(args, unsigned int), count);
+		break;
 		case 'o':
-                        count = print_octal(va_arg(args, unsigned int), count);
-                break;
+			count = print_octal(va_arg(args, unsigned int), count);
+		break;
 		case 'b':
 			count = print_binary(va_arg(args, unsigned int), count);
 		break;

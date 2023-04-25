@@ -1,22 +1,22 @@
 #include "main.h"
 #include <limits.h>
 /**
-  *print_digit - a function that prints a digit
-  *@n: the digit
-  *@count: the counter
-  *Return: count
-  */
+ * print_digit - a function that prints a digit
+ * @n: the digit
+ * @count: the counter
+ * Return: count
+ */
 int print_digit(int n, int count)
 {
 	count = print_char(n + '0', count);
 	return (count);
 }
 /**
-  *print_int - a function that prints a signed decimal int
-  *@n: the number
-  *@count: the counter
-  *Return: count
-  */
+ * print_int - a function that prints a signed decimal int
+ * @n: the number
+ * @count: the counter
+ * Return: count
+ */
 int print_int(int n, int count)
 {
 	int num, y, k;
@@ -44,11 +44,11 @@ int print_int(int n, int count)
 	return (count);
 }
 /**
-   *print_binary - a function that changes a number to binary and then print it
-  *@n: the number
-  *@count: the counter
-  *Return: count
-  */
+ * print_binary - a function that changes a number to binary and then print it
+ * @n: the number
+ * @count: the counter
+ * Return: count
+ */
 int print_binary(unsigned int n, int count)
 {
 	int number = n;
@@ -85,11 +85,12 @@ int print_binary(unsigned int n, int count)
 int print_u(unsigned int num, int count)
 {
 	if (num >= 10)
-        {
-        print_u(num / 10, count);
-        }
-        count = print_digit(num % 10, count);
-        return (count);
+	{
+		print_u(num / 10, count);
+	}
+	count = print_digit(num % 10, count);
+
+	return (count);
 }
 
 /**
@@ -100,21 +101,22 @@ int print_u(unsigned int num, int count)
   */
 int print_octal(unsigned int num, int count)
 {
-        char octal_digits[32];
-        int i = 0;
+	char octal_digits[32];
+	int i = 0;
 
-        if (num == 0)
-        {
-                count = print_char('0', count);
-        }
+	if (num == 0)
+	{
+		count = print_char('0', count);
+	}
 	while (num != 0)
-        {
-                octal_digits[i++] = num % 8 + '0';
-                num /= 8;
-        }
-        while (i-- > 0)
-        {
-                count = print_char(octal_digits[i], count);
-        }
-        return (count);
+	{
+		octal_digits[i++] = num % 8 + '0';
+		num /= 8;
+	}
+	while (i-- > 0)
+	{
+		count = print_char(octal_digits[i], count);
+	}
+
+	return (count);
 }
