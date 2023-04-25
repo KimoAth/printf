@@ -84,12 +84,15 @@ int print_binary(unsigned int n, int count)
   */
 int print_u(unsigned int num, int count)
 {
-	if (num >= 10)
+	if (num < 10)
 	{
-		print_u(num / 10, count);
+		print_char(num + '0', count);
+	}
+	else
+	{
+		count = print_u(num / 10, count);
 	}
 	count = print_digit(num % 10, count);
-
 	return (count);
 }
 
@@ -117,6 +120,5 @@ int print_octal(unsigned int num, int count)
 	{
 		count = print_char(octal_digits[i], count);
 	}
-
 	return (count);
 }
