@@ -39,32 +39,18 @@ int print_string(char *str, int count)
   */
 int print_nstr(char *c, int count)
 {
-	while (*c)
+	while (*c != '\0')
 	{
 		if (*c < 32 || *c >= 127)
 		{
-			count += print_char('\\', count);
-			count += print_char('X', count);
-			if ((*c / 16) < 10)
-			{
-				count = print_char((*c / 16) + '0', count);
-			}
-			else
-			{
-			count = print_char((*c / 16) - 10 + 'A', count);
-			}
-			if ((*c % 16) < 10)
-			{
-				count = print_char((*c % 16) + '0', count);
-			}
-			else
-			{
-			count = print_char((*c % 16) - 10 + 'A', count);
-			}
+			print_char('\\', count);
+			print_char('x', count);
+			print_char((*c / 16) + '0', count);
+			print_char((*c % 16) + ((*c % 16 < 10) ? '0' : 'A' - 10), count);
 		}
 		else
 		{
-			count += print_char(*c, count);
+			print_char(*s, count);
 		}
 		c++;
 	}
