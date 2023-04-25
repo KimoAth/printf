@@ -75,3 +75,46 @@ int print_binary(unsigned int n, int count)
 	}
 	return (count);
 }
+
+/**
+  *print_u - a function that prints an unsigned decimal int
+  *@num: the decimal int
+  *@count: the counter
+  *Return: count
+  */
+int print_u(unsigned int num, int count)
+{
+	if (num >= 10)
+        {
+        print_u(num / 10, count);
+        }
+        count = print_digit(num % 10, count);
+        return (count);
+}
+
+/**
+  *print_octal - a function that prints unsigned octal
+  *@num: the number
+  *@count: the counter
+  *Return: count
+  */
+int print_octal(unsigned int num, int count)
+{
+        char octal_digits[32];
+        int i = 0;
+
+        if (num == 0)
+        {
+                count = print_char('0', count);
+        }
+	while (num != 0)
+        {
+                octal_digits[i++] = num % 8 + '0';
+                num /= 8;
+        }
+        while (i-- > 0)
+        {
+                count = print_char(octal_digits[i], count);
+        }
+        return (count);
+}
