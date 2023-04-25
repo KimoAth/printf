@@ -91,8 +91,8 @@ int print_u(unsigned int num, int count)
 	else
 	{
 		count = print_u(num / 10, count);
-		count = print_u(num % 10, count);
 	}
+	count = print_digit(num %10, count);
 
 	return (count);
 }
