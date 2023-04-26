@@ -11,14 +11,13 @@ int _printf(const char *format, ...)
 
 	va_list args;
 	int count = 0;
-	int len = _strlen(format);
 
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 	va_start(args, format);
 	for (; *format; format++)
 	{
-		if (*format == '%')
+		if (*format == '%' || *format == '%')
 		{
 			format++;
 			if (*format == ' ')
@@ -27,6 +26,10 @@ int _printf(const char *format, ...)
 				{
 					count = print_args1(args, *format, count);
 				}
+			/*	if ((*(format - 1) != '%' ||  (*format == ' ')))
+				{
+					count = -1;
+				}*/
 				return (count);
 			}
 			else
@@ -41,7 +44,5 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(args);
-	if (format[len] == '\0' && format[len - 1] == '%')
-		count = -1;
 	return (count);
 }
