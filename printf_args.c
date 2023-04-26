@@ -39,6 +39,8 @@ int print_args1(va_list args, char specifier, int count)
 		case '%':
 			count = print_char('%', count);
 		break;
+		case 'r':
+		case 'R':
 		case 'S':
 		case 'p':
 			count = print_args2(args, specifier, count);
@@ -66,6 +68,12 @@ int print_args2(va_list args, char specifier, int count)
 		break;
 		case 'S':
 			count = print_nstr(va_arg(args, char *), count);
+		break;
+		case 'r':
+			count = print_rev(va_arg(args, char *), count);
+		break;
+		case 'R':
+			count = print_rot(va_arg(args, char *), count);
 		break;
 	}
 	return (count);

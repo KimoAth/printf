@@ -25,8 +25,10 @@ int _printf(const char *format, ...)
 				{
 				}
 			}
-
+			else
+			{
 			count = print_args1(args, *format, count);
+			}
 		}
 		else
 		{

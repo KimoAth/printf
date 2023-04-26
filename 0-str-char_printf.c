@@ -20,16 +20,18 @@ int print_char(char c, int count)
  */
 int print_string(char *str, int count)
 {
+	
 	if (str == NULL || str == 0)
 	{
-		return (print_string("(null)", count));
+		count = print_string("(null)", count);
+		return (count);
 	}
 	while (*str)
 	{
 		count = print_char(*str, count);
 		str++;
 	}
-	if (*str == '\0' && *(str - 1) != '%')
+	if (*str == '\0' && *(str - 1) == '%')
 	{
 		count = -1;
 	}
@@ -63,4 +65,43 @@ int print_nstr(char *c, int count)
 		c++;
 	}
 	return (count);
+}
+/**
+  *print_rev - a function print a string in reverse
+  *@str: the string
+  *@count: the counter
+  *Return: the counter
+  */
+int print_rev(char *str, int count)
+{
+	int i = _strlen(str);
+	int j;
+
+	if (str == 0)
+	{
+		count = print_string("(null)", count);
+		return (count);
+	}
+
+	for (j = i - 1; j >= 0; j--)
+	{
+		count = print_char(str[j], count);
+	}
+	return (count);
+}
+/**
+  *_strlen - a function behave like strlen
+  *@str: the string we counting
+  *Return: count
+  */
+int _strlen(char *str)
+{
+	int counter = 0;
+
+	while (*str != '\0')
+	{
+		counter++;
+		str++;
+	}
+	return (counter);
 }
