@@ -105,21 +105,29 @@ int print_u(unsigned int num, int count)
   */
 int print_octal(unsigned int num, int count)
 {
-	char octal_digits[32];
+	char octal_digits[100];
 	int i = 0;
+	int j;
 
-	if (num == 0)
-	{
-		count = print_char('0', count);
-	}
 	while (num != 0)
 	{
-		octal_digits[i++] = num % 8 + '0';
+		octal_digits[i] = num % 8;
 		num /= 8;
+		i++;
 	}
-	while (i-- > 0)
+	if (i == 0)
 	{
-		count = print_char(octal_digits[i], count);
+		count = print_char('0', count);
+		count++;
 	}
+	else
+	{
+		for (j = i - 1; j >= 0; j--)
+		{
+			count = print_char(octal_digits[j] + '0', count);
+			count++;
+		}
+	}
+	
 	return (count);
 }
