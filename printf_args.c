@@ -1,4 +1,5 @@
 #include "main.h"
+int print_args2(va_list args, char specifier, int count);
 /**
   *print_args1 - a function that detects and do a specific action
   *@args: a parameter
@@ -39,11 +40,32 @@ int print_args1(va_list args, char specifier, int count)
 			count = print_char('%', count);
 		break;
 		case 'S':
-			count = print_nstr(va_arg(args, char *), count);
+		case 'p':
+			count = print_args2(args, specifier, count);
 		break;
 		default:
 			count = print_char('%', count);
 			count = print_char(specifier, count);
+		break;
+	}
+	return (count);
+}
+/**
+  *print_args2 - a function that detects and do a specific action
+  *@args: a parameter
+  *@specifier: the character we checking
+  *@count: the count
+  *Return: count
+  */
+int print_args2(va_list args, char specifier, int count)
+{
+	switch (specifier)
+	{
+		case 'p':
+			count = print_pointer(va_arg(args, void *), count);
+		break;
+		case 'S':
+			count = print_nstr(va_arg(args, char *), count);
 		break;
 	}
 	return (count);

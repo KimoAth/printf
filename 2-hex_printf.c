@@ -7,7 +7,7 @@
   */
 int print_hex(unsigned int num, int count)
 {
-	char HEX_CHARS[100];
+	char hexadecimal_num[100];
 	int i = 0;
 	int j;
 
@@ -16,26 +16,23 @@ int print_hex(unsigned int num, int count)
 		int remainder = num % 16;
 
 		if (remainder < 10)
-		       	HEX_CHARS[i] = remainder + '0';
+			hexadecimal_num[i] = remainder + '0';
 		else
-			HEX_CHARS[i] = remainder + 'a' - 10;
+			hexadecimal_num[i] = remainder + 'a' - 10;
 		num /= 16;
 		i++;
 	}
 	if (i == 0)
 	{
-		print_char('0', count);
-		count++;
+		count = print_char('0', count);
 	}
 	else
 	{
 		for (j = i - 1; j >= 0; j--)
 		{
-            		print_char(HEX_CHARS[j], count);
-            		count++;
+			count = print_char(hexadecimal_num[j], count);
 		}
 	}
-	
 	return (count);
 }
 /**
@@ -46,7 +43,7 @@ int print_hex(unsigned int num, int count)
 */
 int print_hex_upper(unsigned int num, int count)
 {
-	char hex_digits[100];
+	char hexadecimal_num[100];
 	int i = 0;
 	int j;
 
@@ -55,23 +52,21 @@ int print_hex_upper(unsigned int num, int count)
 		int remainder = num % 16;
 
 		if (remainder < 10)
-			hex_digits[i] = remainder + '0';
+			hexadecimal_num[i] = remainder + '0';
 		else
-			hex_digits[i] = remainder + 'A' - 10;
+			hexadecimal_num[i] = remainder + 'A' - 10;
 		num /= 16;
 		i++;
 	}
 	if (i == 0)
 	{
-		print_char('0', count);
-		count++;
+		count = print_char('0', count);
 	}
 	else
 	{
 		for (j = i - 1; j >= 0; j--)
 		{
-			print_char(hex_digits[j], count);
-			count++;
+			count = print_char(hexadecimal_num[j], count);
 		}
 	}
 	return (count);
@@ -83,35 +78,30 @@ int print_hex_upper(unsigned int num, int count)
   *@count: the counter
   *Return: the count
   */
-void print_pointer(void *ptr, int count)
+int print_pointer(void *ptr, int count)
 {
-	int i;
-	int hex_digit;
-	int printed_prefix = 0;
-	unsigned long int address;
+	char hex_digits[] = "0123456789abcdef";
+	unsigned long address = (unsigned long)ptr;
+	int i = (sizeof(address) * 2) - 1;
+	int found_nonzero = 0;
 
 	if (ptr == NULL)
 	{
 		count = print_string("(nil)", count);
 		return (count);
 	}
-	address = (unsigned long int)ptr;
-	print_char('0', count);
-	print_char('x', count);
+	write(1, "0x", 2);
 	count += 2;
-	for (i = (sizeof(void ) 2) - 1; i >= 0; i--)
+	for (; i >= 0; i--)
 	{
-		hex_digit = (address >> (i * 4)) & 0xf;
-		if (hex_digit || printed_prefix)
+		char hex_char = hex_digits[(address >> (i * 4)) & 0xf];
+
+		if (hex_char != '0' || found_nonzero || i == 0)
 		{
-			print_char(hex_digit < 10 ? '0' + hex_digit : 'a' + (hex_digit - 10), count);
-			printed_prefix = 1;
+			found_nonzero = 1;
+			write(1, &hex_char, 1);
 			count++;
 		}
 	}
-	if (!printed_prefix)
-	{
-		print_char('0', count);
-		count++;
-	}
 	return (count);
+}

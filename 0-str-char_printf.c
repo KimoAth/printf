@@ -29,6 +29,10 @@ int print_string(char *str, int count)
 		count = print_char(*str, count);
 		str++;
 	}
+	if (*str == '\0' && *(str - 1) != '%')
+	{
+		count = -1;
+	}
 	return (count);
 }
 /**
