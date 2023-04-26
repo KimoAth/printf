@@ -90,8 +90,7 @@ int print_pointer(void *ptr, int count)
 		count = print_string("(nil)", count);
 		return (count);
 	}
-	write(1, "0x", 2);
-	count += 2;
+	count = print_string("0x", count);
 	for (; i >= 0; i--)
 	{
 		char hex_char = hex_digits[(address >> (i * 4)) & 0xf];
@@ -99,8 +98,8 @@ int print_pointer(void *ptr, int count)
 		if (hex_char != '0' || found_nonzero || i == 0)
 		{
 			found_nonzero = 1;
-			write(1, &hex_char, 1);
-			count++;
+			count = print_char(hex_char, count);
+			
 		}
 	}
 	return (count);
