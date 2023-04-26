@@ -20,7 +20,6 @@ int print_char(char c, int count)
  */
 int print_string(char *str, int count)
 {
-	
 	if (str == NULL || str == 0)
 	{
 		count = print_string("(null)", count);
