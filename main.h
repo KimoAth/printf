@@ -20,6 +20,6 @@ int print_octal(unsigned int num, int count);
 int print_u(unsigned int num, int count);
 int print_pointer(void *addr, int count);
 int print_rev(char *str, int count);
-int _strlen(char *str);
+int _strlen(const char *str);
 int print_rot(char *str, int count);
 #endif

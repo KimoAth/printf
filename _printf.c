@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 
 /**
  * _printf - simplified version of printf function
@@ -10,6 +11,7 @@ int _printf(const char *format, ...)
 
 	va_list args;
 	int count = 0;
+	int len = _strlen(format);
 
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
@@ -21,9 +23,11 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == ' ')
 			{
-				for (; *format != '%'; format++)
+				for (; *format != '%' && *format != '\0'; format++)
 				{
+					count = print_args1(args, *format, count);
 				}
+				return (count);
 			}
 			else
 			{
@@ -37,5 +41,7 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(args);
+	if (format[len] == '\0' && format[len - 1] == '%')
+		count = -1;
 	return (count);
 }

@@ -94,7 +94,7 @@ int print_rev(char *str, int count)
   *@str: the string we counting
   *Return: count
   */
-int _strlen(char *str)
+int _strlen(const char *str)
 {
 	int counter = 0;
 
