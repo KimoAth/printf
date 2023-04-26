@@ -18,6 +18,6 @@ int print_hex_upper(unsigned int num, int count);
 int print_hex(unsigned int num, int count);
 int print_octal(unsigned int num, int count);
 int print_u(unsigned int num, int count);
-int print_pointer(void *ptr, int count);
+int print_pointer(void *addr, int count);
 
 #endif

@@ -74,32 +74,36 @@ int print_hex_upper(unsigned int num, int count)
 
 /**
   *print_pointer - a function that print a pointer address
-  *@ptr: the pointer
+  *@addr: the pointer
   *@count: the counter
   *Return: the count
   */
-int print_pointer(void *ptr, int count)
+int print_pointer(void *addr, int count)
 {
 	char hex_digits[] = "0123456789abcdef";
-	unsigned long address = (unsigned long)ptr;
+	unsigned long address = (unsigned long)addr;
 	int i = (sizeof(address) * 2) - 1;
 	int found_nonzero = 0;
 
-	if (ptr == NULL)
+	if (addr == NULL)
 	{
 		count = print_string("(nil)", count);
-		return (count);
+		return (5);
 	}
-	count = print_string("0x", count);
-	for (; i >= 0; i--)
+	else
 	{
+		write(1, "0x", 2);
+		count += 2;
+		for (; i >= 0; i--)
+		{
 		char hex_char = hex_digits[(address >> (i * 4)) & 0xf];
 
-		if (hex_char != '0' || found_nonzero || i == 0)
-		{
-			found_nonzero = 1;
-			count = print_char(hex_char, count);
-			
+			if (hex_char != '0' || found_nonzero || i == 0)
+			{
+				found_nonzero = 1;
+				write(1, &hex_char, 1);
+				count++;
+			}
 		}
 	}
 	return (count);
